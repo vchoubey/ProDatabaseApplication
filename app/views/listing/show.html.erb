@@ -1,0 +1,12 @@
+<h1><%= @listing.name %></h1>
+<tbody>
+  <p>
+    <td><%= @listing.detail.street %>,</td>
+    <td><%= @listing.detail.city %></td>
+  </p>
+  <p>
+    <td><%= @listing.detail.province %>,</td>
+    <td><%= @listing.detail.postalCode %></td>
+  </p>
+  <p><%= @listing.detail.npa %>-<%= @listing.detail.nxx %>-<%= @listing.detail.num %></p>
+</tbody>

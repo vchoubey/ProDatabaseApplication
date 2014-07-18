@@ -1,0 +1,20 @@
+<h1>Search Business</h1>
+
+<%= form_for (@search) do |f| %>
+
+  <div class="field">
+    <%= f.label :what %><br />
+    <%= f.text_field :what%>
+  </div>
+  <div class="field">
+    <%= f.label :where %><br />
+    <%= f.text_field :where%>
+  </div>
+  <div class="actions">
+    <%= f.submit "search"%>
+  </div>
+
+<% end %>
+
+
+<p><%= link_to 'Search History', search_url %></p>

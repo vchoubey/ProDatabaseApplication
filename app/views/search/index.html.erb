@@ -1,0 +1,17 @@
+<h1> Search History </h1>
+<table>
+  <tbody>
+    <% @search.each do |search| %>
+      <tr>
+       <td><%= search.what %></td>
+       <td><%=    %></td>
+       <td><%=    %></td>
+       <td><%=    %></td>
+       <td><%=    %></td>
+       <td><%= search.where %></td>
+       <td><%= link_to 'submit', search_find_business_url %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
