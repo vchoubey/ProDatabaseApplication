@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140625011103) do
   end
 
   create_table "listings", force: true do |t|
-    t.integer  "ref_id"
+    t.integer  "ref"
     t.string   "name"
     t.string   "prov"
     t.datetime "created_at"

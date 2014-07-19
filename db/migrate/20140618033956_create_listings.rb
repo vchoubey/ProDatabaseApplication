@@ -1,7 +1,7 @@
 class CreateListings < ActiveRecord::Migration
   def change
     create_table :listings do |t|
-      t.integer :ref_id
+      t.integer :ref
       t.string :name
       t.string :prov
 

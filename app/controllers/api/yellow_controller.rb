@@ -5,7 +5,8 @@ class Api::YellowController < ApplicationController
     @@client.find_business(options[:what], options[:where])
   end
   
-  def self.get_bussiness_detail options
-    @@client.get_business_details(options[:prov], options[:name], options[:ref_id])
+  def self.get_business_details options
+    puts "options : #{options[:ref]}"
+    @@client.get_business_details(options[:prov], options[:name], options[:ref])
   end
 end

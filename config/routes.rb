@@ -5,11 +5,11 @@ Rails.application.routes.draw do
     get 'yellow/find_business'
   end
 
-  get 'search' => 'search#show'
+  get 'search/:id' => 'search#show'
   get 'searchs' => 'search#index'
   get 'search/find_business'
 
-  get 'listing' => 'listing#show'
+  get 'listing/:id' => 'listing#show'
   get 'listings' => 'listing#index'
   get 'listing/get_business_detail'
 

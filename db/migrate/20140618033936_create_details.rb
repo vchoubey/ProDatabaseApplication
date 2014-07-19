@@ -2,7 +2,7 @@ class CreateDetails < ActiveRecord::Migration
   def change
     create_table :details do |t|
     	t.references :listing
-        t.integer :listing_id
+        #t.integer :listing_id
     	t.string  :name
     	t.string  :street
     	t.string  :city

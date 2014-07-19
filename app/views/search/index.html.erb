@@ -9,7 +9,7 @@
        <td><%=    %></td>
        <td><%=    %></td>
        <td><%= search.where %></td>
-       <td><%= link_to 'submit', search_find_business_url %></td>
+       <td><%= link_to 'submit', listings_url({what: search.what, where: search.where}) %></td>
       </tr>
     <% end %>
   </tbody>
