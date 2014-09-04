@@ -1,0 +1,115 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Public</th>
+      <th>Yellow</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% params[:update_checkbox].each do |update| %>
+    <% @listing = Listing.find_by_id(update) %>
+    <% @ecp_detail = PublicsController.get_corporation_details @listing.search_requests.first.what %>
+    <td><h2><% @id += 1 %><%= @listing.name %></h2></td>
+    <% if @ecp_detail.suite == @listing.detail.suite && @ecp_detail.street ==  @listing.detail.street %>
+      <tr>
+        
+        <td><%= @ecp_detail.suite %>-<%= @ecp_detail.street %></td>
+        <% if !@listing.ref.blank? %>
+          <td><%= @listing.detail.suite %>-<%= @listing.detail.street %></td>
+        <% else %>
+          <td><%= %></td>
+        <% end %>
+        <td colspan="3"></td>    
+      </tr>
+    <% else %> 
+      <tr class ="info">
+        <% update_listing = true %>
+        <td><%= @ecp_detail.suite %>-<%= @ecp_detail.street %></td>
+        <% if !@listing.ref.blank? %>
+          <td><%= @listing.detail.suite %>-<%= @listing.detail.street %></td>
+        <% else %>
+          <td><%= %></td>
+        <% end %>
+        <td colspan="3"></td>
+      </tr>
+    <% end %>
+
+    <% if @ecp_detail.city == @listing.detail.city && @ecp_detail.province == @listing.detail.province && @ecp_detail.postal == @listing.detail.postalCode%>
+      <tr>
+        <td><%= @ecp_detail.city %>, <%= @ecp_detail.province %>, <%= @ecp_detail.postal %></td>
+        <% if !@listing.ref.blank? %>
+          <td><%= @listing.detail.city %>, <%= @listing.detail.province %>, <%=@listing.detail.postalCode %></td>
+        <% else %>
+          <td><%= %></td>
+        <% end %>
+        <td colspan="3"></td>   
+      </tr>
+    <% else %>
+      <tr class = "info">
+        <% update_listing = true %>
+        <td><%= @ecp_detail.city %>, <%= @ecp_detail.province %>, <%= @ecp_detail.postal %></td>
+        <% if !@listing.ref.blank? %>
+          <td><%= @listing.detail.city %>, <%= @listing.detail.province %>, <%=@listing.detail.postalCode %></td>
+        <% else %>
+          <td><%= %></td>
+        <% end %>
+        <td colspan="3"></td>   
+      </tr>
+    <% end %>
+
+    <% if @ecp_detail.work_phone ==  @listing.detail.work_phone %>
+      <tr>
+        <td>Work Phone: <%= @ecp_detail.work_phone %></td>
+        <% if !@listing.ref.blank? %>
+          <td>Work Phone: <%= @listing.detail.work_phone %></td>
+        <% else %>
+          <td><%= %></td>
+        <% end %>
+        <td colspan="3"></td>
+      </tr>
+    <% else %>
+      <tr class = "info">
+        <% update_listing = true %>
+        <td>Work Phone: <%= @ecp_detail.work_phone %></td>
+        <% if !@listing.ref.blank? %>
+          <td>Work Phone: <%= @listing.detail.work_phone %></td>
+        <% else %>
+          <td><%= %></td>
+        <% end %>
+        <td colspan="3"></td>
+      </tr>
+    <% end %>
+
+    <% if @ecp_detail.fax == @listing.detail.fax %>
+      <tr>
+        <td>Fax: <%= @ecp_detail.fax %></td>
+        <% if !@listing.ref.blank? %>
+          <td>Fax: <%= @listing.detail.fax %></td>
+        <% else %>
+          <td><%= %></td>
+        <% end %>
+        <td colspan="3"></td>
+      </tr>
+    <% else %>
+      <tr class = "info">
+        <% update_listing = true %>
+        <td>Fax: <%= @ecp_detail.fax %></td>
+        <% if !@listing.ref.blank? %>
+          <td>Fax: <%= @listing.detail.fax %></td>
+        <% else %>
+          <td><%= %></td>
+        <% end %>
+        <td colspan="3"></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody> 
+</table>
+
+
+<% if @id == @updates.count %>
+  <div class= "pull-right">
+    <%= link_to 'Update', {:controller => :listing, :action => :update_all_ecp, render_update: "true", update_checkbox: params[:update_checkbox] }, data: { confirm: "Are you sure?" }, :class => 'btn btn-small btn-warning' %>
+  </div>  
+<% end %>
+

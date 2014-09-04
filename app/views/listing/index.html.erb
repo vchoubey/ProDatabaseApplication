@@ -1,12 +1,100 @@
-<h1> Listing Businesses </h1>
-<table>
+
+ 
+<h1> Listings </h1>
+<div class = "navbar navbar-fixed-top">
+  <div class ="navbar-inner">
+    <div class = "container">
+      <a class = "brand" href="/" > <img src="assets/OneMove.jpg" style="height="90"; width="90""/></a>
+    </div> 
+  </div>
+</div>
+
+<%= params %>
+<% if params[:what] == 'corporations' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Public</th>
+      <th></th>
+      <th>Yellow</th>
+    </tr>
+  </thead>
+
   <tbody>
-    <% @listing.each do |listing| %>
-      <tr>
-       <td><%= listing.name %></td>
-       <td><%= link_to 'Show', listing  %></td>
-      </tr>
+    <% i = 0 %>
+    <%= form_tag(listing_update_all_ecp_path, :method => "get" ) do %>
+    <ul style="list-style-type:none;">
+      <% @listing.each do |listing| %>
+        <% @new_search = listing.search_requests.first.what %>
+        <% if @new_search != @previous_search %>
+        <% equal = compare(listing, @new_search) %>
+          <% if equal == true %>
+            <tr >
+             <td><%= %></td>
+             <td><%= i += 1 %></td>
+             <td><%= @new_search %></td>
+             <% @previous_search = @new_search %>
+             <td><%=  %></td> 
+             <% if !listing.ref.blank? %>
+                <td><%= listing.name %></td>
+             <% else %>
+                <td><%=  %></td> 
+             <% end %>
+             <td><%=  %></td>   
+             <td><%= link_to 'Show', listing, :class => 'btn btn-mini btn-info' %></td>
+             
+            </tr>
+          <% end %>  
+          <% if !equal %> 
+            <tr class ="warning">
+              <td><%= check_box_tag "update_checkbox[]", listing.id %>
+               <td><%= i += 1 %></td>
+               <td><%= @new_search %></td>
+               <% @previous_search = @new_search %>
+               <td><%=  %></td> 
+               <% if !listing.ref.blank? %>
+                  <td><%= listing.name %></td>
+               <% else %>
+                  <td><%=  %></td> 
+               <% end %>
+               <td><%=  %></td>   
+               <td><%= link_to 'Show', listing, :class => 'btn btn-mini btn-info' %></td>
+               <% if listing.detail.work_phone.blank? || listing.detail.fax.blank? %>
+               <td><button type="button" class = "btn-mini btn-warning " data-container="body" data-toggle="popover" data-placement="right" title="Sorry! not enough information provided by yellow pages" ><i class= "fa fa-exclamation-triangle"></button></td>
+               <% end %>
+             </td>               
+            </tr>
+          <% end %>    
+          <% if  equal == "not enough details" %>
+            <tr class ="exception">
+              <td><%= %></td>
+              <td><%= i += 1 %></td>
+              <td><%= @new_search %></td>
+              <% @previous_search = @new_search %>
+              <td><%=  %></td> 
+              <% if !listing.ref.blank? %>
+                <td><%= listing.name %></td>
+              <% else %>
+                <td><%=  %></td> 
+              <% end %>
+              <td><%=  %></td>   
+              <td><%= link_to 'Show', listing, :class => 'btn btn-mini btn-info' %></td>
+             
+            </tr>
+          <% end %>
+        <% end %>  
+      <% end %>
+    </ul> 
+    <div class = "pull-right" >
+      <%= submit_tag 'Update all', :class => 'btn btn-warning btn-lg' %>
+    </div>  
     <% end %>
   </tbody>
 </table>
 <br>
+<% end %>
+
+<%= will_paginate @listing %>
+

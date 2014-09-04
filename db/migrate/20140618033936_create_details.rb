@@ -4,6 +4,7 @@ class CreateDetails < ActiveRecord::Migration
     	t.references :listing
         #t.integer :listing_id
     	t.string  :name
+        t.string  :suite
     	t.string  :street
     	t.string  :city
     	t.string  :province
@@ -13,9 +14,8 @@ class CreateDetails < ActiveRecord::Migration
     	t.float   :distance
     	t.integer :parentId
     	t.boolean :isParent
-    	t.integer :npa
-    	t.integer :nxx
-    	t.integer :num
+    	t.string  :work_phone
+    	t.string  :fax
         t.text    :categories
 
 

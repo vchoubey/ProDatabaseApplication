@@ -1,12 +1,150 @@
 <h1><%= @listing.name %></h1>
-<tbody>
-  <p>
-    <td><%= @listing.detail.street %>,</td>
-    <td><%= @listing.detail.city %></td>
-  </p>
-  <p>
-    <td><%= @listing.detail.province %>,</td>
-    <td><%= @listing.detail.postalCode %></td>
-  </p>
-  <p><%= @listing.detail.npa %>-<%= @listing.detail.nxx %>-<%= @listing.detail.num %></p>
-</tbody>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Public</th>
+      <th>Yellow</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if !@listing.detail.blank? %>
+      <% if (@ecp_detail.suite == @listing.detail.suite || @listing.detail.suite.blank?)  && (@ecp_detail.street ==  @listing.detail.street || @listing.detail.street.blank? ) %>
+        <tr>
+          <td><%= @ecp_detail.suite %>-<%= @ecp_detail.street %></td>
+          <% if !@listing.ref.blank? %>
+          <td><%= @listing.detail.suite %>-<%= @listing.detail.street %></td>
+          <% else %>
+          <td><%= %></td>
+          <% end %>
+          <td colspan="5"></td>    
+        </tr>
+      <% else %> 
+        <tr class ="info">
+          <% update_listing = true %>
+          <td><%= @ecp_detail.suite %>-<%= @ecp_detail.street %></td>
+          <% if !@listing.ref.blank? %>
+            <td><%= @listing.detail.suite %>-<%= @listing.detail.street %></td>
+          <% else %>
+            <td><%= %></td>
+          <% end %>
+          <td>
+            <%= link_to 'Update_ecp_detail', 
+            {:controller => :listing, :action => :update_ecp_detail, 
+              update_detail: "suite&street" 
+            }, 
+            data: { confirm: "Are you sure?" }, :class => 'btn btn-small btn-warning' %>
+          </td>
+          <td colspan="5"></td>
+        </tr>
+      <% end %>
+
+      <% if ((@ecp_detail.city == @listing.detail.city || @listing.detail.city.blank?)&& 
+        (@ecp_detail.province == @listing.detail.province || @listing.detail.province.blank?) && 
+        (@ecp_detail.postal == @listing.detail.postalCode || @listing.detail.postalCode.blank?))%>
+        <tr>
+          <td><%= @ecp_detail.city %>, <%= @ecp_detail.province %>, <%= @ecp_detail.postal %></td>
+          <% if !@listing.ref.blank? %>
+          <td><%= @listing.detail.city %>, <%= @listing.detail.province %>, <%=@listing.detail.postalCode %></td>
+          <% else %>
+          <td><%= %></td>
+          <% end %>
+          <td colspan="5"></td>   
+        </tr>
+      <% else %>
+        <tr class = "info">
+          <% update_listing = true %>
+          <td><%= @ecp_detail.city %>, <%= @ecp_detail.province %>, <%= @ecp_detail.postal %></td>
+          <% if !@listing.ref.blank? %>
+          <td><%= @listing.detail.city %>, <%= @listing.detail.province %>, <%=@listing.detail.postalCode %></td>
+          <% else %>
+          <td><%= %></td>
+          <% end %>
+          <td>
+            <%= link_to 'Update_ecp_detail', 
+            {:controller => :listing, :action => :update_ecp_detail, 
+              update_detail: "city&province&postal" 
+            }, 
+            data: { confirm: "Are you sure?" }, :class => 'btn btn-small btn-warning' %>
+          </td>
+          <td colspan="5"></td>   
+        </tr>
+      <% end %>
+
+      <% if @ecp_detail.work_phone ==  @listing.detail.work_phone || @listing.detail.work_phone.blank?%>
+        <tr>
+          <td>Work Phone: <%= @ecp_detail.work_phone %></td>
+          <% if !@listing.ref.blank? %>
+          <td>Work Phone: <%= @listing.detail.work_phone %></td>
+          <% else %>
+          <td><%= %></td>
+          <% end %>
+          <td colspan="5"></td>
+        </tr>
+      <% else %>
+        <tr class = "info">
+          <% update_listing = true %>
+          <td>Work Phone: <%= @ecp_detail.work_phone %></td>
+          <% if !@listing.ref.blank? %>
+          <td>Work Phone: <%= @listing.detail.work_phone %></td>
+          <% else %>
+          <td><%= %></td>
+          <% end %>
+          <td>
+            <%= link_to 'Update_ecp_detail', 
+            {:controller => :listing, :action => :update_ecp_detail, 
+              update_detail: "work_phone" 
+            }, 
+            data: { confirm: "Are you sure?" }, :class => 'btn btn-small btn-warning' %>
+          </td>
+          <td colspan="5"></td>
+        </tr>
+      <% end %>
+
+      <% if @ecp_detail.fax == @listing.detail.fax || @listing.detail.fax.blank?%>
+        <tr>
+          <td>Fax: <%= @ecp_detail.fax %></td>
+          <% if !@listing.ref.blank? %>
+          <td>Fax: <%= @listing.detail.fax %></td>
+          <% else %>
+          <td><%= %></td>
+          <% end %>
+          <td colspan="5"></td>
+        </tr>
+      <% else %>
+        <tr class = "info">
+          <% update_listing = true %>
+          <td>Fax: <%= @ecp_detail.fax %></td>
+          <% if !@listing.ref.blank? %>
+          <td>Fax: <%= @listing.detail.fax %></td>
+          <% else %>
+          <td><%= %></td>
+          <% end %>
+          <td>
+            <%= link_to 'Update_ecp_detail', 
+            {:controller => :listing, :action => :update_ecp_detail, 
+              update_detail: "fax" 
+            }, 
+            data: { confirm: "Are you sure?" }, :class => 'btn btn-small btn-warning' %>
+          </td>
+          <td colspan="5"></td>
+        </tr>
+      <% end %>
+      
+    <% else %>
+     <tr>
+      <td> Incomplete details provided </td>
+     </tr>
+    <% end %>
+  </tbody> 
+</table>
+
+<div class= "pull-right">
+  <% if update_listing == true %>
+    <%= link_to 'Update all the details', {:controller => :listing, :action => :update_ecp }, data: { confirm: "Are you sure?" }, :class => 'btn btn-small btn-warning' %>
+    <% end %>
+</div>  
+
+<div class= "pull-left">
+  <%= link_to 'Back', listings_url(what: "corporations", where: @ecp_detail.province), :class => 'btn btn-small btn-primary' %>
+</div>  

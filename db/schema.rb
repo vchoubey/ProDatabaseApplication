@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625011103) do
+ActiveRecord::Schema.define(version: 20140719152849) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140625011103) do
   create_table "details", force: true do |t|
     t.integer  "listing_id"
     t.string   "name"
+    t.string   "suite"
     t.string   "street"
     t.string   "city"
     t.string   "province"
@@ -55,9 +56,8 @@ ActiveRecord::Schema.define(version: 20140625011103) do
     t.float    "distance"
     t.integer  "parentId"
     t.boolean  "isParent"
-    t.integer  "npa"
-    t.integer  "nxx"
-    t.integer  "num"
+    t.string   "work_phone"
+    t.string   "fax"
     t.text     "categories"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -84,6 +84,19 @@ ActiveRecord::Schema.define(version: 20140625011103) do
     t.text     "dspAd"
     t.text     "logo"
     t.text     "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "publics", force: true do |t|
+    t.string   "name"
+    t.string   "suite"
+    t.string   "street"
+    t.string   "city"
+    t.string   "province"
+    t.string   "postal"
+    t.string   "work_phone"
+    t.string   "fax"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

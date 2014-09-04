@@ -52,3 +52,15 @@ production:
   database: ProDatabase_production
   username: ProDatabase
   password: <%= ENV['PRODATABASE_DATABASE_PASSWORD'] %>
+
+# ecp_staging:
+#   adapter: mysql2
+#   encoding: utf8
+#   pool: 5
+#   username: sa
+#   password: woofer8
+#   database: ecpmain_staging
+#   timeout: 60000
+#   host: tecpdb1
+  
+

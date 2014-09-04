@@ -9,10 +9,17 @@ gem 'mysql2'
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+#This gem provides integration for Rails projects using the Less stylesheet language in the asset pipeline.
+gem "less-rails"
+#Bootstrap is a toolkit designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
+gem 'twitter-bootstrap-rails'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
+
+#provides the Font-Awesome web fonts and stylesheest as a Rails engine for use with asset pipeline
+gem 'font-awesome-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -37,6 +44,10 @@ gem 'rabl'
 
 #Protect attributes from mass-assignment in ActiveRecord models.
 gem 'protected_attributes'
+
+#pagination library that integrates RoR, Sinatra, Merb, DataMapper and Sequel
+gem 'will_paginate'
+
 
 #Use ActiveModel has_secure_passwordroup :doc do
 # gem 'bcrypt', '~> 3.1.7'

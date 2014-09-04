@@ -1,0 +1,26 @@
+<h1>Listing publics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td colspan="3"></td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publics.each do |public| %>
+      <tr>
+        <td><%= public.name %></td>
+
+        
+        <td><%= link_to 'Show', public %></td>
+        
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

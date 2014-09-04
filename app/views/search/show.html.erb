@@ -1,17 +1,45 @@
-<h1>Search Business</h1>
+<h1>Search Corporations/Lawyers</h1>
 
-<%= form_for (@search) do |f| %>
-
-  <div class="field">
-    <%= f.label :what %><br />
-    <%= f.text_field :what%>
+<div class = "navbar navbar-fixed-top">
+  <div class ="navbar-inner">
+    <div class = "container">
+      <a class = "brand" href="/" > <img src="assets/OneMove.jpg" style="height="90"; width="90""/></a>
+    </div>
   </div>
+</div>
+
+<%= form_for SearchRequest.new do |f| %>
+
   <div class="field">
-    <%= f.label :where %><br />
-    <%= f.text_field :where%>
+    <br />
+    
+    <p>
+
+    <%= f.radio_button :what, 'corporations'%>
+    <%= f.label :what, "Corporations", :value => 'corporations', :style => "display:inline; font-size:20px" %>
+    <%= fa_icon "users 2x"  %> 
+    
+    <%= f.radio_button :what, 'indivduals'%>
+    <%= f.label :what, 'Lawyers', :value => 'individuals', :style => "display:inline; font-size:20px"  %>  
+    <%= fa_icon "user 2x" %> 
+  </p>
+ 
+  <p>
+    <%= f.radio_button :where, 'AB' %>
+    <%= f.label :where, 'AB', :value => 'AB', :style => "display:inline; font-size:15px" %>  
+   
+  
+    <%= f.radio_button :where, 'BC'%>
+    <%= f.label :where, 'BC', :value => 'BC', :style => "display:inline; font-size:15px" %>  
+    
+  
+    <%= f.radio_button :where, 'ON' %>
+    <%= f.label :where, 'ON', :value => 'ON', :style => "display:inline; font-size:15px"  %>  
+    
+  </p>
   </div>
   <div class="actions">
-    <%= f.submit "search"%>
+    <%= f.button "Search", :class => 'btn btn-lg btn-primary', data: { disable_with: "<i class='fa fa-refresh fa-spin'></i> Please wait...." }%>
   </div>
 
 <% end %>

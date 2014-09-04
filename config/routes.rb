@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :corporations, controller: 'publics'
+
+ 
   namespace :api do
     get 'yellow/get_business_detail'
     get 'yellow/find_business'
@@ -8,10 +11,24 @@ Rails.application.routes.draw do
   get 'search/:id' => 'search#show'
   get 'searchs' => 'search#index'
   get 'search/find_business'
-
+  
+  
+  match 'listing/update_all_ecp' => 'listing#update_all_ecp', :via => :get
+  get 'listing/:id/update_ecp_detail' => 'listing#update_ecp_detail'
+  get 'listing/:id/update_ecp' => 'listing#update_ecp'
   get 'listing/:id' => 'listing#show'
   get 'listings' => 'listing#index'
   get 'listing/get_business_detail'
+
+
+  #put 'listing/:id' => 'listing#update_ecp'
+
+
+  get 'publics/get_individuals'
+  get 'publics/get_individual_details'
+  get 'publics/get_corporations'
+  get 'publics/get_corporation_details'
+
 
   resources :search_requests, controller: 'search', action: 'find_business' 
   resources :details, :listings ,controller: 'listing', action: 'get_business_detail' 
